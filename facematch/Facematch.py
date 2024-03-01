@@ -80,7 +80,8 @@ def verify(
             "similarity": 0,
             "facial_areas": {"img1": None, "img2": None},
             "time": round(toc - tic, 2),
-            "confidence": {'r_image' : None, 'c_image': None},}
+            "confidence": {'r_image' : None, 'c_image': None},
+            "embbedings" : {'vec_registry' : None, 'vec_comparision' : None}}
 
         return resp_obj
     
@@ -98,6 +99,7 @@ def verify(
         "facial_areas": {"r_image": facial_areas[0], "c_image": facial_areas[1]},
         "confidence": {'r_image' : round(confidence[0],2), 'c_image': round(confidence[1],2)},
         "time": round(toc - tic, 2),
+        "embbedings" : {'vec_registry' : img1_representation, 'vec_comparision' : img2_representation}
     }
 
     return resp_obj
