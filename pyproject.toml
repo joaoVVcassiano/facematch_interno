@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "facematch_interno"
+version = "0.1.0"
+description = "Modelo de facematch"
+authors = ["João Victor Vilela Cassiano <joao.cassiano@willbank.com.br>", "MLOps <plataforma-mlops@willbank.com.br>"]
+readme = "README.md"
+packages = [{include = "src"}]
+repository = "https://github.com/will-bank/facematch_interno"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.12"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.1"
+pytest-cov = "^4.0.0"
+black = "^23.3.0"
+flake8 = "^6.0.0"
+isort = "^5.12.0"
+taskipy = "^1.10.4"
+pre-commit = "^3.3.2"
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = "--doctest-modules -p no:warnings"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120
+
+[tool.taskipy.tasks]
+lint = "black --check --diff . && isort --check --diff ."
+pre_test = "task lint"
+test = "pytest -s -x --cov=smtools --cov-report=term-missing -vvv --ignore=smtools/services"
+post_test = "coverage html"
+
+[[tool.poetry.source]]
+name = "private"
+url = "https://will-prod-142401413602.d.codeartifact.us-east-1.amazonaws.com/pypi/ml-platform/simple/"
+priority = "supplemental"
+
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "primary"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

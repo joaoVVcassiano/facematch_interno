@@ -9,7 +9,6 @@ import numpy as np
 from PIL import Image
 
 #append path to ../.. to import facematch
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 from facematch import Facematch
 
 logger = logging.getLogger()
@@ -70,4 +69,4 @@ def predict_fn(input_data, model = None):
         'vec_embbeding_ccomparision' : result.get('embbedings').get('vec_comparision')
         }
     
-    return result
+    return dict_result

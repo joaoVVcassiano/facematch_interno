@@ -1,0 +1,26 @@
+project_name: facematch
+role: arn:aws:iam::142401413602:role/will-prod-sagemaker-pipeline-service-execution
+
+cache_config:
+  enable_caching: True
+  expire_after: 30d
+
+tags:
+  - Circle: Fraude
+  - Product: Facematch V1
+
+production:
+  bucket: will-prod-ml-platform-sagemaker-artifacts
+  bucket_transient: will-prod-ml-platform-sagemaker-transient
+  bucket_data: will-prod-ml-platform-sagemaker-data
+  results_database_name: customer_curated_zone
+  results_table_name: facematch_model_score
+  results_s3_path: s3://data-curated-zone-will-prod/swap_customer_curated_zone/facematch_model_score/
+
+sandbox:
+  bucket: will-sdx-ml-platform-sagemaker-transient
+  bucket_transient: will-sdx-ml-platform-sagemaker-transient
+  bucket_data: will-sdx-ml-platform-sagemaker-transient
+  results_database_name: sagemaker_tmp
+  results_table_name: facematch_model_score
+  results_s3_path: s3://will-sdx-ml-platform-sagemaker-transient/swap_customer_curated_zone/facematch_model_score/

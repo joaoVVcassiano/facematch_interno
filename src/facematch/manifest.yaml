@@ -1,0 +1,20 @@
+services:
+  facematch:
+    inference:
+      extensions:
+        - src.facematch.inference.model_register
+
+      parameters:
+        - name: preprocess_instance_type
+          default_value: "ml.t3.medium"
+
+        - name: training_instance_type
+          default_value: "ml.m5.large"
+
+      endpoint:
+        name: facematch
+        type: serverless
+        model_package_group_name: facematch-model-v1
+        Parameters:
+          MemorySizeInMB: "4096"
+          MaxConcurrency: "10"
